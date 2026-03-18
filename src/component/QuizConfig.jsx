@@ -39,7 +39,7 @@
 // }
 // export default QuizConfig;
 
-function QuizConfig({ settings, setSettings, onStart }) {
+function QuizConfig({ settings, setSettings, onStart, loading }) {
   return (
     <div className="min-h-screen bg-[#f5f4f7] px-4 py-6">
       <div className="mx-auto max-w-sm rounded-3xl bg-white p-5 shadow-md">
@@ -91,9 +91,10 @@ function QuizConfig({ settings, setSettings, onStart }) {
 
         <button
           onClick={onStart}
+          disabled={loading}
           className="mt-6 w-full rounded-2xl bg-gradient-to-r from-[#2d0ea8] to-[#6d2cf3] px-4 py-3 font-semibold text-white shadow-md transition active:scale-[0.98]"
         >
-          Commencer
+          {loading ? "Chargement..." : "Commencer"}
         </button>
       </div>
     </div>

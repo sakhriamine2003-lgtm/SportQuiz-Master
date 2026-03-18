@@ -10,9 +10,11 @@ function App() {
     amount: 10,
     difficulty: "easy",
   });
+  const [loading, setLoading] = useState(false);
 
   const startQuiz = async () => {
     try {
+      setLoading(true);
       console.log("Settings :", settings);
 
       const data = await fetchQuizQuestions(
@@ -22,6 +24,7 @@ function App() {
 
       console.log("Questions reçues :", data);
     } catch (err) {
+      setLoading(false);
       console.log("Erreur :", err.message);
     }
   };
@@ -38,6 +41,7 @@ function App() {
                 settings={settings}
                 setSettings={setSettings}
                 onStart={startQuiz}
+                loading={loading}
               />
             }
           />

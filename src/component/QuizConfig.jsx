@@ -3,14 +3,11 @@ function QuizConfig() {
   return (
     <div className="min-h-screen bg-[#f5f4f7] px-4 py-6">
       <div className="mx-auto max-w-sm rounded-3xl bg-white p-5 shadow-md">
-        {/* Title */}
         <h2 className="mb-5 text-xl font-bold text-slate-800">
           Configurer le quiz
         </h2>
 
-        {/* Inputs */}
         <div className="space-y-4">
-          {/* Nombre */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-slate-600">
               Nombre de questions

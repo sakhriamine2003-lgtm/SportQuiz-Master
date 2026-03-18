@@ -24,3 +24,15 @@ const handleFiftyFifty = () => {
   setIsFiftyUsed(true);    // N-markiw l-bonus bli t-khdem
 };
 
+{currentQuestion.options.map((option, index) => (
+  <button
+    key={index}
+    disabled={hiddenOptions.includes(option)} // Disable ila t-khba
+    className={`p-4 rounded-xl border-2 transition-all 
+      ${hiddenOptions.includes(option) ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+  >
+    {option}
+  </button>
+))}
+
+

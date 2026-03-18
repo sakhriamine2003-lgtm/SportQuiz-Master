@@ -1,9 +1,8 @@
 import { useState } from "react";
 const [usedFiftyFifty, setUsedFiftyFifty] = useState(false);
 
-const handleFiftyFifty = () => {
-    if (usedFiftyFifty) return;
-    const incorrectOnes = currentQuestion.options.filter(opt => opt !== currentQuestion.correct);
-    setHiddenOptions([incorrectOnes[0], incorrectOnes[1]]);
-    setUsedFiftyFifty(true);
-};
+// 2. L-lista d l-ajwiba li ghadi n-khbiw f had l-question
+const [hiddenOptions, setHiddenOptions] = useState([]);
+
+
+

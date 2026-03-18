@@ -1,8 +1,26 @@
 import { useState } from "react";
-const [usedFiftyFifty, setUsedFiftyFifty] = useState(false);
+const [isFiftyUsed, setIsFiftyUsed] = useState(false);;
 
 // 2. L-lista d l-ajwiba li ghadi n-khbiw f had l-question
 const [hiddenOptions, setHiddenOptions] = useState([]);
 
 
+
+
+
+const handleFiftyFifty = () => {
+  if (isFiftyUsed) return; // Ma-idir walou ila t-khdem qbel
+
+  // A. N-jebdou ghir l-ajwiba li ghaltin
+  const incorrectOnes = currentQuestion.options.filter(
+    (option) => option !== currentQuestion.correctAnswer
+  );
+
+  // B. N-khtaru joj ghaltin random bach n-ghabrohom
+  // N-mélangew l-ghaltin w n-akhdu l-joj l-owlin
+  const toHide = incorrectOnes.sort(() => 0.5 - Math.random()).slice(0, 2);
+
+  setHiddenOptions(toHide); // N-7etlohom f state bach n-ghabrohom
+  setIsFiftyUsed(true);    // N-markiw l-bonus bli t-khdem
+};
 

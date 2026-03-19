@@ -15,3 +15,15 @@ const shuffleQuiz = () => {
 
   setCurrentIndex(0); 
 }}
+
+
+  const handleNext = () => {
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+
+      const shuffledAnswers = [...questions[currentIndex + 1].answers].sort(
+        () => Math.random() 
+      );
+      setAnswers(shuffledAnswers);
+    }
+  };

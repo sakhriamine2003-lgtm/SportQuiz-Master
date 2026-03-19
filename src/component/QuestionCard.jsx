@@ -9,4 +9,9 @@ export function QuizData() {
 const shuffleQuiz = () => {
   const shuffledQuestions = [...questions].sort(() => Math.random());
   setQuestions(shuffledQuestions);
+
+   const shuffledAnswers = [...shuffledQuestions[0].answers].sort(() => Math.random());
+  setAnswers(shuffledAnswers);
+
+  setCurrentIndex(0); 
 }}

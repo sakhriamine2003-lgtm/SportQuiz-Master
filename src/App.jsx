@@ -5,18 +5,20 @@ import Header from "./utils/Header";
 import Footer from "./utils/Footer";
 import { fetchQuizQuestions } from "./services/quizApi";
 import Loader from "./component/Loader";
-
+import ErrorMessage from "./component/ErrorMessage";
 function App() {
   const [settings, setSettings] = useState({
     amount: 10,
     difficulty: "easy",
   });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const startQuiz = async () => {
     try {
       setLoading(true);
-      console.log("Settings :", settings);
+      setError("");
+      // console.log("Settings :", settings);
 
       const data = await fetchQuizQuestions(
         settings.amount,
@@ -27,6 +29,7 @@ function App() {
       setLoading(false);
     } catch (err) {
       console.log("Erreur :", err.message);
+      setError(err.message);
       setLoading(false);
     }
   };
@@ -42,6 +45,12 @@ function App() {
               <>
                 {loading ? (
                   <Loader />
+                ) : error ? (
+                  <ErrorMessage
+                    error={error}
+                    onRetry={startQuiz}
+                    onBack={() => setError("")}
+                  />
                 ) : (
                   <QuizConfig
                     settings={settings}

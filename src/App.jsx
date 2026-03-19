@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import './index.css'; // <--- HAD L-STER DARORI BACH TAILWIND I-KHDEM
 import ProgressBar from "./component/ProgressBar";
 import Timer from './component/Timer';
-
 function App() {
   const [current, setCurrent] = useState(1);
   const total = 10;

@@ -1,4 +1,4 @@
-function Header({ title = "Hi, Kenzy" }) {
+function Header({ title = "Hi, Ayoub" }) {
   return (
     <div className="flex items-center justify-between px-4 py-3">
       <div className="flex items-center gap-3">

@@ -4,6 +4,7 @@ import QuizConfig from "./component/QuizConfig";
 import Header from "./utils/Header";
 import Footer from "./utils/Footer";
 import { fetchQuizQuestions } from "./services/quizApi";
+import Loader from "./component/Loader";
 
 function App() {
   const [settings, setSettings] = useState({
@@ -23,9 +24,10 @@ function App() {
       );
 
       console.log("Questions reçues :", data);
-    } catch (err) {
       setLoading(false);
+    } catch (err) {
       console.log("Erreur :", err.message);
+      setLoading(false);
     }
   };
   return (
@@ -37,12 +39,18 @@ function App() {
           <Route
             path="/"
             element={
-              <QuizConfig
-                settings={settings}
-                setSettings={setSettings}
-                onStart={startQuiz}
-                loading={loading}
-              />
+              <>
+                {loading ? (
+                  <Loader />
+                ) : (
+                  <QuizConfig
+                    settings={settings}
+                    setSettings={setSettings}
+                    onStart={startQuiz}
+                    loading={loading}
+                  />
+                )}
+              </>
             }
           />
         </Routes>

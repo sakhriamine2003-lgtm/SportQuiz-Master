@@ -52,20 +52,22 @@ function QuizConfig({ settings, setSettings, onStart, loading }) {
             <label className="mb-2 block text-sm font-semibold text-slate-600">
               Nombre de questions
             </label>
-            <select
+            <input
+              type="text"
               value={settings.amount}
-              onChange={(e) =>
-                setSettings({
-                  ...settings,
-                  amount: Number(e.target.value),
-                })
-              }
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                const regex = /^(50|[1-9]|[1-4][0-9])?$/;
+
+                if (regex.test(value)) {
+                  setSettings({
+                    ...settings,
+                    amount: value === "" ? "" : Number(value),
+                  });
+                }
+              }}
               className="w-full rounded-2xl bg-[#f1edf3] px-4 py-3 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-purple-400"
-            >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={15}>15</option>
-            </select>
+            />
           </div>
 
           <div>

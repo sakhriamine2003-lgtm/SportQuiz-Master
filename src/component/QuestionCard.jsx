@@ -1,33 +1,35 @@
 import { useState } from "react";
 import table from "./test";
 
-export function QuizData() {
-  const [questions, setQuestions] = useState(table); 
+export default function QuestionCard() {
+  const [questions, setQuestions] = useState(table);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState(table[0].answers);
 
-const shuffleQuiz = () => {
-  const shuffledQuestions = [...questions].sort(() => Math.random());
-  setQuestions(shuffledQuestions);
+  const shuffleQuiz = () => {
+    const shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
+    setQuestions(shuffledQuestions);
 
-   const shuffledAnswers = [...shuffledQuestions[0].answers].sort(() => Math.random());
-  setAnswers(shuffledAnswers);
+    const shuffledAnswers = [...shuffledQuestions[0].answers].sort(
+      () => Math.random() - 0.5,
+    );
+    setAnswers(shuffledAnswers);
 
-  setCurrentIndex(0); 
-}}
-
+    setCurrentIndex(0);
+  };
 
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
 
       const shuffledAnswers = [...questions[currentIndex + 1].answers].sort(
-        () => Math.random() 
+        () => Math.random() - 0.5,
       );
       setAnswers(shuffledAnswers);
     }
   };
-   return (
+
+  return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-6 rounded-2xl shadow-lg w-96 text-center">
         <h2 className="text-xl font-bold mb-4">
@@ -45,22 +47,22 @@ const shuffleQuiz = () => {
           ))}
         </div>
 
-<div className="flex gap-12">  
-        <button
-          onClick={handleNext}
-          className="mt-4 w-full  bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
-        >
-          Question suivante
-        </button>
+        <div className="flex gap-12 mt-4">
+          <button
+            onClick={handleNext}
+            className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
+          >
+            Question suivante
+          </button>
 
-        <button
-          onClick={shuffleQuiz}
-          className=" w-10  "
-        >
-          <img src="https://cdn-icons-png.flaticon.com/128/3917/3917293.png" alt="logo" />
-        </button>
+          <button onClick={shuffleQuiz} className="w-10">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/3917/3917293.png"
+              alt="logo"
+            />
+          </button>
+        </div>
       </div>
     </div>
-    </div>
   );
-
+}

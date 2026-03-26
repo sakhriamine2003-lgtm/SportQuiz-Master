@@ -1,4 +1,4 @@
-// import { shuffleAnswers } from "../utils/shuffleAnswers";
+import { shuffleAnswers } from "../utils/shuffleAnswers";
 
 export async function fetchQuizQuestions(amount, difficulty) {
   const url = `https://opentdb.com/api.php?amount=${amount}&category=21&difficulty=${difficulty}&type=multiple`;
@@ -16,6 +16,6 @@ export async function fetchQuizQuestions(amount, difficulty) {
     question: item.question,
     difficulty: item.difficulty,
     correctAnswer: item.correct_answer,
-    // answers: shuffleAnswers([item.correct_answer, ...item.incorrect_answers]),
+    answers: shuffleAnswers([item.correct_answer, ...item.incorrect_answers]),
   }));
 }

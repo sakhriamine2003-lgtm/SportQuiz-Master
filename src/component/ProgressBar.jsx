@@ -1,7 +1,6 @@
-import React from "react";
-
 const ProgressBar = ({ current, total }) => {
   const progress = (current / total) * 100;
+
   return (
     <div className="w-full mb-6 text-left">
       <div className="flex justify-between items-center mb-2">
@@ -10,13 +9,15 @@ const ProgressBar = ({ current, total }) => {
           {current} / {total}
         </span>
       </div>
-      <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden border border-gray-100">
+
+      <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
         <div
-          className="bg-[#8D6DEE] h-full rounded-full transition-all duration-500 ease-out"
+          className="bg-[#8D6DEE] h-full transition-all duration-500"
           style={{ width: `${progress}%` }}
-        ></div>
+        />
       </div>
     </div>
   );
 };
+
 export default ProgressBar;

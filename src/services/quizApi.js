@@ -1,5 +1,12 @@
 import { shuffleAnswers } from "../utils/shuffleAnswers";
 
+// ✅ fonction pour décoder les caractères HTML (&quot;, &amp;, etc.)
+function decodeHTML(html) {
+  const txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+}
+
 export async function fetchQuizQuestions(amount, difficulty) {
   const url = `https://opentdb.com/api.php?amount=${amount}&category=21&difficulty=${difficulty}&type=multiple`;
 
@@ -13,9 +20,20 @@ export async function fetchQuizQuestions(amount, difficulty) {
 
   return data.results.map((item, index) => ({
     id: index,
-    question: item.question,
+
+    // ✅ décodage du texte
+    question: decodeHTML(item.question),
+
     difficulty: item.difficulty,
-    correctAnswer: item.correct_answer,
-    answers: shuffleAnswers([item.correct_answer, ...item.incorrect_answers]),
+
+    correctAnswer: decodeHTML(item.correct_answer),
+
+    // ✅ correction: utiliser "answers" (cohérent avec ton App)
+    answers: shuffleAnswers(
+      [
+        item.correct_answer,
+        ...item.incorrect_answers,
+      ].map(decodeHTML)
+    ),
   }));
 }

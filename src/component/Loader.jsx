@@ -1,5 +1,3 @@
-import React from "react";
-
 function Loader() {
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-4">

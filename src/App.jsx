@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './index.css'; // <--- HAD L-STER DARORI BACH TAILWIND I-KHDEM
+import './index.css'; 
 import ProgressBar from "./component/ProgressBar";
 import Timer from './component/Timer';
 function App() {

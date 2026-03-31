@@ -31,9 +31,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // ========================
-  // START QUIZ
-  // ========================
   const startQuiz = async () => {
     try {
       setLoading(true);
@@ -41,7 +38,7 @@ function App() {
 
       const data = await fetchQuizQuestions(
         settings.amount,
-        settings.difficulty
+        settings.difficulty,
       );
 
       setQuestions(data);
@@ -145,8 +142,9 @@ function App() {
                   </div>
 
                   <QuestionCard
-                    question={questions[currentIndex].question}   
-                    answers={questions[currentIndex].answers}    
+                    question={questions[currentIndex].question}
+                    answers={questions[currentIndex].answers}
+                    correctAnswer={questions[currentIndex].correctAnswer}
                     onAnswer={handleAnswer}
                   />
                 </div>
